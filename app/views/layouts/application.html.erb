@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   </head>
@@ -15,5 +15,85 @@
     <%= render 'layouts/navbar'  %>
     <%= render 'layouts/flash'  %>
     <%= yield %>
+
+
+
+
+<script>
+
+//EXERCICE 1 : DEROULER LES LISTES CENTRALES
+
+$("div.container ul li").click(function(){
+   $(this).next('div').toggle(400);   
+});
+
+
+// EXERCICE 2 : MENU COLLAPSE
+
+//STEP 1 : DEPLACER L'AVATAR DANS LE MENU ET LE METTRE EN POSITION 1
+
+var menu = $('.mr-auto')
+var avatar = $('.rounded-circle[height="50px"]')
+var hamburger = $('.navbar-toggler')
+var form = $('.michel')
+var li = $('<li class="nav-item for-avatar"></li>')
+
+
+li.prependTo(menu)
+avatar.appendTo(li)
+
+//STEP 2 : AFFICHER LE MENU VERTICALEMENT EN RETIRANT LA CLASSE navbar-nav
+
+menu.removeClass('navbar-nav')
+console.log(menu)
+
+
+
+//STEP 3 : RETIRER LES VILAINES PUCES ET ALIGNER
+
+$('li').css('list-style-type','none')
+
+//STEP 4 : GENERER UN TOGGLE SUR LES PUCES
+
+$('li:not(.for-avatar').slideToggle()
+
+avatar.click(function(){
+     $('li:not(.for-avatar').slideToggle()  ;
+});
+
+
+
+
+
+// EXERCICE 3 : Formulaire
+
+
+//Form
+form.hide()
+avatar.click(function(){
+  form.toggle()
+
+    $('.michel:first').css('background-color' ,  '#f8f9fa');
+
+});
+
+
+
+// EXERCICE 4 : HAMBUREGR COLLAPSE
+
+
+
+hamburger.click(function(){
+ 
+  menu.appendTo(hamburger)
+  menu.css('display', '')
+  avatar.css('display', 'none')
+  $('li:not(.for-avatar').slideToggle()  
+  
+})
+
+
+</script>
+
   </body>
 </html>
