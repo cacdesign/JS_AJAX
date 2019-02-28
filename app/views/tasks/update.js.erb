@@ -1,0 +1,51 @@
+// // Via la reconstitution d'un href+id
+
+activate = document.querySelectorAll('.checkbox')
+
+// href_prefix = "http://localhost:3000/tasks/"
+// href_suffix = "<%=@task.id%>"
+// href_compared = href_prefix+String(href_suffix)
+
+
+// for(i=0; i < activate.length; i++){
+// 		console.log(activate[i])
+		
+// 		if(activate[i].href == href_compared){
+
+// 			if("<%=@task.status%>" == "true"){
+// 				activate[i].innerHTML = "Desactivate"
+// 			}
+// 			else{
+// 				activate[i].innerHTML = "Activate"
+// 			}
+// 		}
+// }
+
+
+
+
+
+// Via l'id, en l'insérant dans une classe
+
+task_id = "<%=@task.id%>"
+
+
+for(i=0; i < activate.length; i++){
+		console.log(activate[i])
+		
+		if(activate[i].id == task_id){
+
+			if("<%=@task.status%>" == "false"){
+				activate[i].innerHTML = "Activate"
+			}
+			else{
+				activate[i].innerHTML = "Desactivate"
+				
+			}
+		}
+}
+
+
+console.log($('a'))
+
+

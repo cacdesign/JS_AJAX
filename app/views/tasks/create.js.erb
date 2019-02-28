@@ -1,0 +1,23 @@
+function insert_good_category(){
+	// On sélectionne le tableau des catégories 
+	first_li = document.getElementById("task").querySelectorAll('#category')
+
+	// On boucle sur ce tableau et pour trouver la bonne catégorie et insérer notre task
+	for(i=0; i < first_li.length; i++){
+		console.log(first_li[i])
+		
+		if("<%=@category.title%>" == first_li[i].textContent){
+			console.log("ok")
+			document.getElementById("task").querySelectorAll('ul')[i+1].insertAdjacentHTML("beforeend", "<%= j render 'task', task: @task, category: @category %>")
+		}
+		else{
+			console.log("nok")
+		}
+	}
+}
+
+
+insert_good_category()
+
+
+

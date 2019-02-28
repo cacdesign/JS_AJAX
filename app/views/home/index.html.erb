@@ -36,22 +36,22 @@
 <%= render 'layouts/task_form'  %>
 
 
-
-
-
-
-<div class="container">
+<div class="container" id="task">
   <ul>
   <% @categories.each do  |category|%>
-  <li><%= category.title  %></li>
+  <li id="category"><%= category.title  %></li>
   <div class="card">
     <ul>
       <% category.tasks.each do |task|  %>
       <li>
         <%= task.title  %>
         <% unless task.deadline.nil? %>
-          , to read: <%= task.deadline.strftime('%D')  %>
+          , Deadline: <%= task.deadline.strftime('%D')  %>
         <% end %>
+
+        <%= link_to "Activate", task_path(task), method: :patch, remote: true, class: "btn btn-success checkbox", id: task.id %>
+        <%= link_to "Delete", task_path(task), method: :delete, remote: true, class: "btn btn-danger delete", id: task.id %>
+
       </li>
       <% end %>
     </ul>

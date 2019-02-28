@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<h1>Your Emails</h1>
+
+<br><br>
+
+<div class="container">
+
+
+	<% @emails.each do |email|%>
+
+	
+
+		<ul class="list-group">
+
+			<%if email.read == false%>
+
+				<li class="list-group-item active" id='<%=email.id%>'>
+				  	<%= link_to email_path(email), method: :patch, remote: true, style:'color:white', id: email.id do %>
+					  	<%=email.object%>
+					  	<%= link_to "Delete", email_path(email), method: :delete, remote: true, class: "btn btn-danger delete hide", style:"margin-left:20px" %>
+				  	<%end%>
+				 </li>
+				
+			<%else%>
+
+				<li class="list-group-item" id="email.id">
+				  	<%= link_to email_path(email), method: :patch, remote: true, id: email.id do %>
+					  	<%=email.object%>
+					  	<%= link_to "Delete", email_path(email), method: :delete, remote: true, class: "btn btn-danger delete hide", style:"margin-left:20px" %>
+				  	<%end%>
+				 </li>
+
+			
+			<%end%>
+		</ul>
+
+
+
+	<%end%>
+
+</div>
+    <%= yield %>
+
+
+
+
+<script>
+
+////// INSERTION DES BODYS ///////
+
+// On cache tous les delete par défaut
+$('.btn-danger').hide()
+
+
+// Delete
+
+$('.delete').click(function(){
+	li = $(this).parent()
+	ul = li.parent()
+
+  ul.toggle("puff")
+});
+
+
+
+
+
+
+
+// Construction d'un tableau des bodys
+var emails = '<%=@body_arr.join("/")%>'
+var body_arr = emails.split('/');
+
+// Construction de la puce à insérer
+body_prefix = '<li class="list-group-item" id="body">'
+body_suffix = '</li>'
+
+
+// Itération sur chaque object 
+
+$(".list-group").each(function(index){
+	$(this).click(function(){
+	body = body_prefix + body_arr[index] + body_suffix
+	
+	object_mail = document.querySelectorAll('.list-group-item')[index]
+	entire_mail = document.querySelectorAll('.list-group')[index]
+	button_hidden = entire_mail.querySelector('.hide')
+
+	if(button_hidden){
+
+		object_mail.classList.remove('active');
+
+		body_content = $(this).append(body)
+		button = $('.btn-danger')
+		button[index].style.display = ''
+		button[index].classList.remove('hide');
+		}	
+
+});
+});
+
+</script>
+
+  </body>
+</html>

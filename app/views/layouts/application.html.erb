@@ -51,14 +51,14 @@ console.log(menu)
 
 //STEP 3 : RETIRER LES VILAINES PUCES ET ALIGNER
 
-$('li').css('list-style-type','none')
+$('.mr-auto li').css('list-style-type','none')
 
 //STEP 4 : GENERER UN TOGGLE SUR LES PUCES
 
-$('li:not(.for-avatar').slideToggle()
+$('.mr-auto li:not(.for-avatar').slideToggle()
 
 avatar.click(function(){
-     $('li:not(.for-avatar').slideToggle()  ;
+$('.mr-auto li:not(.for-avatar').slideToggle()  ;
 });
 
 
@@ -91,6 +91,29 @@ hamburger.click(function(){
   $('li:not(.for-avatar').slideToggle()  
   
 })
+
+
+
+//Checkbox
+
+$('.checkbox').click(function(){
+  $(this).parent('li').toggle("puff")
+});
+
+
+// // Delete
+
+// $('.delete').click(function(){
+//   $(this).parent('li').toggle("puff")
+// });
+
+// console.log($('.delete'))
+
+
+
+
+
+
 
 
 </script>
